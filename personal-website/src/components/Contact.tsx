@@ -9,7 +9,7 @@ export default function Contact() {
     <Section className="gap-6 justify-center">
       <h1 className="text-4xl font-bold">Contact</h1>
       <p className="text-lg text-center max-w-2xl">
-        Feel free to reach out to me! I'm always open to discussing new opportunities, 
+        Feel free to reach out to me! I am always open to discussing new opportunities, 
         interesting projects, or just having a chat.
       </p>
       <div className="flex items-center justify-center gap-6 mt-4">

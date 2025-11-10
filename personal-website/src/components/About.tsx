@@ -1,5 +1,4 @@
 import Section from "./Section";
-import { Badge } from "./ui/badge";
 import SkillBadge from "./SkillBadge";
 
 export default function About() {

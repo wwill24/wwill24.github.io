@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import GithubIcon from "./icons/GitHub";
 import LinkedInIcon from "./icons/LinkedIn";
 import EmailIcon from "./icons/Email";
