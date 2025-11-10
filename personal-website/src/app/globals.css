@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Your custom theme variables using hex colors */
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --card: #ffffff;
+    --card-foreground: #171717;
+  }
+
+  /* System preference as fallback when no explicit theme set */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+      --card: #1a1a1a;
+      --card-foreground: #ededed;
+    }
+  }
+
+  /* Explicit theme selection overrides */
+  html[data-theme="light"] {
+    --background: #ffffff;
+    --foreground: #171717;
+    --card: #ffffff;
+    --card-foreground: #171717;
+  }
+
+  html[data-theme="dark"] {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --card: #1a1a1a;
+    --card-foreground: #ededed;
+  }
+
+  /* Base element styles */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jetbrains-mono), monospace;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--background) 100%, transparent) 0%,
+      color-mix(in oklab, var(--background) 98%, hsl(220, 70%, 50%)) 25%,
+      color-mix(in oklab, var(--background) 98%, hsl(280, 60%, 50%)) 50%,
+      color-mix(in oklab, var(--background) 98%, hsl(320, 50%, 50%)) 75%,
+      color-mix(in oklab, var(--background) 100%, transparent) 100%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  html[data-theme="dark"] body::before {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--background) 100%, transparent) 0%,
+      color-mix(in oklab, var(--background) 85%, hsl(220, 60%, 50%)) 25%,
+      color-mix(in oklab, var(--background) 85%, hsl(280, 55%, 50%)) 50%,
+      color-mix(in oklab, var(--background) 85%, hsl(320, 50%, 50%)) 75%,
+      color-mix(in oklab, var(--background) 100%, transparent) 100%
+    );
+    opacity: 0.6;
+  }
+
+  /* Ensure icons are visible and properly sized */
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@layer components {
+  /* Navigation components */
+  .site-header {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    pointer-events: none; /* allow clicks through except on island */
+  }
+
+  .nav-island {
+    pointer-events: auto;
+    max-width: 820px;
+    width: calc(100% - 24px);
+    background-color: color-mix(in oklab, var(--background) 80%, transparent);
+    border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-radius: 9999px;
+    backdrop-filter: saturate(180%) blur(12px);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+
+  .nav-link {
+    color: color-mix(in oklab, var(--foreground) 90%, transparent);
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .nav-link:hover {
+    background-color: color-mix(in oklab, var(--foreground) 8%, transparent);
+  }
+
+  .nav-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+  }
+
+  .nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color-mix(in oklab, var(--foreground) 90%, transparent);
+    padding: 0.4rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .nav-icon-link:hover {
+    background-color: color-mix(in oklab, var(--foreground) 8%, transparent);
+    color: var(--foreground);
+    transform: scale(1.1);
+  }
+
+  .theme-toggle {
+    appearance: none;
+    border: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+    background: color-mix(in oklab, var(--background) 96%, transparent);
+    color: var(--foreground);
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    background: color-mix(in oklab, var(--foreground) 8%, var(--background));
+  }
+
+  /* Layout components */
+  .site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 2rem 0;
+    border-bottom: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  }
+
+  .section:last-child { 
+    border-bottom: none; 
+    padding-bottom: 3rem; 
+  }
+
+  .section h1, .section h2 {
+    margin: 0 0 1rem 0;
+  }
+}
+
+@layer utilities {
+  /* Theme-based visibility utilities */
+  .theme-light-only {
+    display: inline;
+  }
+
+  html[data-theme="dark"] .theme-light-only {
+    display: none;
+  }
+
+  .theme-dark-only {
+    display: none;
+  }
+
+  html[data-theme="dark"] .theme-dark-only {
+    display: inline;
+  }
+}
