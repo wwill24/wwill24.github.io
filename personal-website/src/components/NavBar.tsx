@@ -26,6 +26,7 @@ function applyTheme(theme: "light" | "dark") {
 export default function NavBar() {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -44,26 +45,52 @@ export default function NavBar() {
     }
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="site-header">
       <div className="nav-island">
         <nav className="nav">
-          <ul className="nav-links">
+          <button
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+            <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+          </button>
+
+          <ul className={`nav-links ${isMobileMenuOpen ? "mobile-open" : ""}`}>
             {SECTIONS.map(({ id, label }) => (
               <li key={id}>
-                <a href={`#${id}`} className="nav-link">{label}</a>
+                <a 
+                  href={`#${id}`} 
+                  className="nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  {label}
+                </a>
               </li>
             ))}
           </ul>
 
-          <div className="nav-right">
-            <div className="flex items-center gap-2">
+          <div className={`nav-right ${isMobileMenuOpen ? "mobile-open" : ""}`}>
+            <div className="nav-icons">
               <a
                 href="https://github.com/wwill24"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-icon-link"
                 aria-label="GitHub"
+                onClick={closeMobileMenu}
               >
                 <GithubIcon className="w-5 h-5" />
               </a>
@@ -73,6 +100,7 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 className="nav-icon-link"
                 aria-label="LinkedIn"
+                onClick={closeMobileMenu}
               >
                 <LinkedInIcon className="w-5 h-5" />
               </a>
@@ -80,6 +108,7 @@ export default function NavBar() {
                 href="mailto:williamjunw@gmail.com"
                 className="nav-icon-link"
                 aria-label="Email"
+                onClick={closeMobileMenu}
               >
                 <EmailIcon className="w-5 h-5" />
               </a>
@@ -89,6 +118,7 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 className="nav-icon-link"
                 aria-label="Resume"
+                onClick={closeMobileMenu}
               >
                 <ResumeIcon className="w-5 h-5" />
               </a>

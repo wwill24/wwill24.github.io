@@ -8,14 +8,14 @@ export default function About() {
       <div className="flex flex-col gap-4 text-lg leading-relaxed">
         <p className="text-center">
           Hi! I’m Will. I am a software engineer with prior experience at Amazon Web Services. 
-          I’m passionate about building products that make a real impact on people’s lives. 
+          I&apos;m passionate about building products that make a real impact on people&apos;s lives. 
           With a strong foundation in computer science and hands-on experience in full-stack development, 
           contributing and building large scalable systems backend systems, and API integrations, I 
           bring a versatility and adaptability to any engineering culture. I have a strong interest in 
           backend services, system design, developer tools, and anything else that makes our lives easier. 
         </p>
         <p className="text-center">
-          When I'm not working, you can find me working on personal projects that challenge me to grow as a developer.
+          When I&apos;m not working, you can find me working on personal projects that challenge me to grow as a developer.
           I also enjoy developing fun games using Three js or on Roblox!
         </p>
         <div className="mt-4">
