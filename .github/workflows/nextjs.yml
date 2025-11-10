@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,12 +30,10 @@ jobs:
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
-            exit 0
-          elif [ -f "package.json" ]; then
+          elif [ -f "package-lock.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
-            exit 0
           else
             echo "Unable to determine package manager"
             exit 1
@@ -44,7 +43,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: ./personal-website/yarn.lock
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -55,9 +54,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ./personal-website/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}-${{ hashFiles('personal-website/**/*.[jt]s', 'personal-website/**/*.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('personal-website/yarn.lock', 'personal-website/package-lock.json') }}-${{ hashFiles('personal-website/**/*.[jt]s', 'personal-website/**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('personal-website/yarn.lock', 'personal-website/package-lock.json') }}-
 
       - name: Install dependencies
         working-directory: ./personal-website
