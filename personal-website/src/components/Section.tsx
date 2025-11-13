@@ -10,7 +10,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`min-h-4/5 sm:min-h-screen flex flex-col items-center gap-3 p-4 bg-no-repeat bg-center bg-cover ${className}`}
+      className={`flex flex-col items-center gap-3 p-12 bg-no-repeat bg-center bg-cover ${className}`}
     >
       {children}
     </section>

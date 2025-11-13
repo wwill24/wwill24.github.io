@@ -11,6 +11,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "William Wu | Software Engineer",
   description: "William's personal website",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -38,6 +41,7 @@ export default function RootLayout({
           }}
         />
         <NavBar />
+        <div className="p-5"></div>
         <main className="site-container">
           {children}
         </main>

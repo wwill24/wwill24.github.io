@@ -2,6 +2,7 @@ import Home from "@/components/Home";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Project from "@/components/Project";
+import Now from "@/components/Now";
 
 export default function RootPage() {
   return (
@@ -17,6 +18,9 @@ export default function RootPage() {
       </section>
       <section id="projects" className="section">
         <Project />
+      </section>
+      <section id="now" className="section">
+        <Now />
       </section>
     </>
   );

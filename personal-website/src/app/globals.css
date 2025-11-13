@@ -296,17 +296,17 @@
   }
 
   .section {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     border-bottom: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
   }
 
   .section:last-child { 
     border-bottom: none; 
-    padding-bottom: 3rem; 
+    padding-bottom: 2rem; 
   }
 
   .section h1, .section h2 {
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.75rem 0;
   }
 }
 
