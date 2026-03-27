@@ -17,6 +17,18 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    title: "Full Stack Engineer",
+    company: "Smartnosis",
+    location: "Los Angeles, CA",
+    period: "December 2025 - Present",
+    description: [
+      "Architected automated concussion monitoring pipeline with 5-period SMS follow-up scheduling, eliminating manual tracking gaps and ensuring 100% post-injury patient coverage",
+      "Engineered real-time red-flag escalation engine analyzing 11+ symptom inputs with severity scoring to instantly triage high-risk athletes, reducing clinical response time",
+      "Implemented secure JWT token rotation with refresh deduplication and role-based access control across 3 user types, hardening PHI protection for HIPAA-readiness",
+      "Built multi-tenant organization linking system with invitation-based onboarding, enabling platform scalability from single clinics to district-wide deployments",
+    ],
+  },
+  {
     title: "Software Development Engineer Intern",
     company: "Amazon Web Services",
     location: "Sunnyvale, CA",
@@ -59,7 +71,7 @@ export default function Experience() {
   return (
     <Section className="gap-8 justify-start max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold text-center w-full">Experience</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         {experiences.map((exp, index) => (
           <Card
             key={index}
